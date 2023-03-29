@@ -38,12 +38,97 @@ class PdfGenerator{
         ),
         pageFormat: PdfPageFormat.roll80 ,
         build: (context) {
-          return Center(
-              child: Container(
-                  child: Text("بسم الله")
-              )
+          return Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              children: [
+                Text("Your Order is here.."),
+                Table(
+
+
+                    columnWidths: {
+                      0: FlexColumnWidth(1),
+                      1: FlexColumnWidth(3),
+                    }, children: [
+                  TableRow(children: [
+                    Padding(
+                      padding: const EdgeInsets.only(
+                          top: 5.0),
+                      child: Text("Name :"),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(
+                          top: 5.0),
+                      child: Text(
+                        'Sohaib Saleem',
+                      ),
+                    ),
+                  ]),
+                  TableRow(children: [
+                    Padding(
+                      padding: const EdgeInsets.only(
+                          top: 5.0),
+                      child: Text("Order Id : "),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(
+                          top: 5.0),
+                      child: Text(
+                        '#4jR445089r',
+                      ),
+                    ),
+                  ]),
+                  TableRow(children: [
+                    Padding(
+                      padding: const EdgeInsets.only(
+                          top: 5.0),
+                      child: Text("1 Burger : "),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(
+                          top: 5.0),
+                      child: Text(
+                        '450',
+                      ),
+                    ),
+                  ]),
+                  TableRow(children: [
+                    Padding(
+                      padding: const EdgeInsets.only(
+                          top: 5.0),
+                      child: Text("1 large Pizza :"),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(
+                          top: 5.0),
+                      child: Text(
+                        '1650',
+                      ),
+                    ),
+                  ]),
+                  TableRow(children: [
+                    Padding(
+                      padding: const EdgeInsets.only(
+                          top: 5.0),
+                      child: Text("Total Balance : "),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(
+                          top: 5.0),
+                      child: Text(
+                          '2100'
+                      ),
+                    ),
+                  ]),
+                ]),
+
+              ]
+            )
+
+
           );
-        });
+        }
+        );
   }
 
 

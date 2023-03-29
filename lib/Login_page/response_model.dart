@@ -1,34 +1,34 @@
-/// user : {"id":"128","tusrid":"Sufi","tusrpwd":"2023","tusrnam":"Saif","tmobnum":"03217555020","temladd":"saif.icit@gmail.com","tcrtdat":"2022-12-18","tcrttim":null,"tupdtim":null,"tusrsts":"Yes","tusrtyp":"Collector","tcolcod":"999","tloccod":"99"}
-/// error : 200
-/// message : "login success"
+/// user : {"id":"33","username":"sohaib","email":"sohaibsaleem@89gmail.com","password":"sohaib","father":"saleem","age":"21","mobile":"03047738612","city":"lahore"}
+/// status : 200
+/// message : "Login Successful"
 
 class ResponseModel {
   ResponseModel({
       User? user, 
-      num? error, 
+      num? status, 
       String? message,}){
     _user = user;
-    _error = error;
+    _status = status;
     _message = message;
 }
 
   ResponseModel.fromJson(dynamic json) {
     _user = json['user'] != null ? User.fromJson(json['user']) : null;
-    _error = json['error'];
+    _status = json['status'];
     _message = json['message'];
   }
   User? _user;
-  num? _error;
+  num? _status;
   String? _message;
 ResponseModel copyWith({  User? user,
-  num? error,
+  num? status,
   String? message,
 }) => ResponseModel(  user: user ?? _user,
-  error: error ?? _error,
+  status: status ?? _status,
   message: message ?? _message,
 );
   User? get user => _user;
-  num? get error => _error;
+  num? get status => _status;
   String? get message => _message;
 
   Map<String, dynamic> toJson() {
@@ -36,141 +36,96 @@ ResponseModel copyWith({  User? user,
     if (_user != null) {
       map['user'] = _user?.toJson();
     }
-    map['error'] = _error;
+    map['status'] = _status;
     map['message'] = _message;
     return map;
   }
 
 }
 
-/// id : "128"
-/// tusrid : "Sufi"
-/// tusrpwd : "2023"
-/// tusrnam : "Saif"
-/// tmobnum : "03217555020"
-/// temladd : "saif.icit@gmail.com"
-/// tcrtdat : "2022-12-18"
-/// tcrttim : null
-/// tupdtim : null
-/// tusrsts : "Yes"
-/// tusrtyp : "Collector"
-/// tcolcod : "999"
-/// tloccod : "99"
+/// id : "33"
+/// username : "sohaib"
+/// email : "sohaibsaleem@89gmail.com"
+/// password : "sohaib"
+/// father : "saleem"
+/// age : "21"
+/// mobile : "03047738612"
+/// city : "lahore"
 
 class User {
   User({
       String? id, 
-      String? tusrid, 
-      String? tusrpwd, 
-      String? tusrnam, 
-      String? tmobnum, 
-      String? temladd, 
-      String? tcrtdat, 
-      dynamic tcrttim, 
-      dynamic tupdtim, 
-      String? tusrsts, 
-      String? tusrtyp, 
-      String? tcolcod, 
-      String? tloccod,}){
+      String? username, 
+      String? email, 
+      String? password, 
+      String? father, 
+      String? age, 
+      String? mobile, 
+      String? city,}){
     _id = id;
-    _tusrid = tusrid;
-    _tusrpwd = tusrpwd;
-    _tusrnam = tusrnam;
-    _tmobnum = tmobnum;
-    _temladd = temladd;
-    _tcrtdat = tcrtdat;
-    _tcrttim = tcrttim;
-    _tupdtim = tupdtim;
-    _tusrsts = tusrsts;
-    _tusrtyp = tusrtyp;
-    _tcolcod = tcolcod;
-    _tloccod = tloccod;
+    _username = username;
+    _email = email;
+    _password = password;
+    _father = father;
+    _age = age;
+    _mobile = mobile;
+    _city = city;
 }
 
   User.fromJson(dynamic json) {
     _id = json['id'];
-    _tusrid = json['tusrid'];
-    _tusrpwd = json['tusrpwd'];
-    _tusrnam = json['tusrnam'];
-    _tmobnum = json['tmobnum'];
-    _temladd = json['temladd'];
-    _tcrtdat = json['tcrtdat'];
-    _tcrttim = json['tcrttim'];
-    _tupdtim = json['tupdtim'];
-    _tusrsts = json['tusrsts'];
-    _tusrtyp = json['tusrtyp'];
-    _tcolcod = json['tcolcod'];
-    _tloccod = json['tloccod'];
+    _username = json['username'];
+    _email = json['email'];
+    _password = json['password'];
+    _father = json['father'];
+    _age = json['age'];
+    _mobile = json['mobile'];
+    _city = json['city'];
   }
   String? _id;
-  String? _tusrid;
-  String? _tusrpwd;
-  String? _tusrnam;
-  String? _tmobnum;
-  String? _temladd;
-  String? _tcrtdat;
-  dynamic _tcrttim;
-  dynamic _tupdtim;
-  String? _tusrsts;
-  String? _tusrtyp;
-  String? _tcolcod;
-  String? _tloccod;
+  String? _username;
+  String? _email;
+  String? _password;
+  String? _father;
+  String? _age;
+  String? _mobile;
+  String? _city;
 User copyWith({  String? id,
-  String? tusrid,
-  String? tusrpwd,
-  String? tusrnam,
-  String? tmobnum,
-  String? temladd,
-  String? tcrtdat,
-  dynamic tcrttim,
-  dynamic tupdtim,
-  String? tusrsts,
-  String? tusrtyp,
-  String? tcolcod,
-  String? tloccod,
+  String? username,
+  String? email,
+  String? password,
+  String? father,
+  String? age,
+  String? mobile,
+  String? city,
 }) => User(  id: id ?? _id,
-  tusrid: tusrid ?? _tusrid,
-  tusrpwd: tusrpwd ?? _tusrpwd,
-  tusrnam: tusrnam ?? _tusrnam,
-  tmobnum: tmobnum ?? _tmobnum,
-  temladd: temladd ?? _temladd,
-  tcrtdat: tcrtdat ?? _tcrtdat,
-  tcrttim: tcrttim ?? _tcrttim,
-  tupdtim: tupdtim ?? _tupdtim,
-  tusrsts: tusrsts ?? _tusrsts,
-  tusrtyp: tusrtyp ?? _tusrtyp,
-  tcolcod: tcolcod ?? _tcolcod,
-  tloccod: tloccod ?? _tloccod,
+  username: username ?? _username,
+  email: email ?? _email,
+  password: password ?? _password,
+  father: father ?? _father,
+  age: age ?? _age,
+  mobile: mobile ?? _mobile,
+  city: city ?? _city,
 );
   String? get id => _id;
-  String? get tusrid => _tusrid;
-  String? get tusrpwd => _tusrpwd;
-  String? get tusrnam => _tusrnam;
-  String? get tmobnum => _tmobnum;
-  String? get temladd => _temladd;
-  String? get tcrtdat => _tcrtdat;
-  dynamic get tcrttim => _tcrttim;
-  dynamic get tupdtim => _tupdtim;
-  String? get tusrsts => _tusrsts;
-  String? get tusrtyp => _tusrtyp;
-  String? get tcolcod => _tcolcod;
-  String? get tloccod => _tloccod;
+  String? get username => _username;
+  String? get email => _email;
+  String? get password => _password;
+  String? get father => _father;
+  String? get age => _age;
+  String? get mobile => _mobile;
+  String? get city => _city;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
     map['id'] = _id;
-    map['tusrid'] = _tusrid;
-    map['tusrpwd'] = _tusrpwd;
-    map['tusrnam'] = _tusrnam;
-    map['tmobnum'] = _tmobnum;
-    map['temladd'] = _temladd;
-    map['tcrtdat'] = _tcrtdat;
-    map['tcrttim'] = _tcrttim;
-    map['tupdtim'] = _tupdtim;
-    map['tusrsts'] = _tusrsts;
-    map['tusrtyp'] = _tusrtyp;
-    map['tcolcod'] = _tcolcod;
-    map['tloccod'] = _tloccod;
+    map['username'] = _username;
+    map['email'] = _email;
+    map['password'] = _password;
+    map['father'] = _father;
+    map['age'] = _age;
+    map['mobile'] = _mobile;
+    map['city'] = _city;
     return map;
   }
 

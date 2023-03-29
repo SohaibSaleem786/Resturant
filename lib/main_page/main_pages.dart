@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:resturant/More_info/More_info.dart';
 import 'package:resturant/Screen/Offer_dishes.dart';
 import 'package:resturant/Screen/cart_screen.dart';
 import 'package:resturant/Screen/product.dart';
@@ -15,10 +16,13 @@ class _Main_PageState extends State<Main_Page> {
 
   /// list of bottom navigator bar
 
+
   List pages = [
     ProductListScreen(),
     CartScreen(),
-    offer_dishes()
+    offer_dishes(),
+    More_info(),
+
     // offer_dishes(),
   ];
 
@@ -34,9 +38,12 @@ class _Main_PageState extends State<Main_Page> {
     return Scaffold(
       body: pages[currentIndex],
       bottomNavigationBar: BottomNavigationBar(
+
         // type: BottomNavigationBarType.shifting,
+        // backgroundColor: Colors.deepOrange,
         backgroundColor: Colors.deepOrange,
-        selectedItemColor :Colors.black,
+        selectedItemColor :Colors.deepOrange,
+        unselectedItemColor: Colors.deepOrange[50],
 
         onTap: onTap,
         currentIndex:currentIndex,
@@ -58,6 +65,11 @@ class _Main_PageState extends State<Main_Page> {
           BottomNavigationBarItem(
             icon: Icon(Icons.menu_book),
             label: 'Deals',
+
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.more),
+            label: 'More',
 
           ),
         ],

@@ -2,7 +2,10 @@ import 'dart:convert';
 import 'dart:ui';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
+import 'package:resturant/Login_page/Sign_up/forgetPwScreen.dart';
+import 'package:resturant/Login_page/Sign_up/signUpScreen.dart';
 import 'package:resturant/Login_page/response_model.dart';
+import 'package:resturant/Own_Funtion.dart';
 import 'package:resturant/Screen/product.dart';
 import 'package:resturant/main_page/main_pages.dart';
 
@@ -18,14 +21,16 @@ class _Login_PageState extends State<Login_Page> {
 
   ResponseModel responseModel = ResponseModel();
 
-
-  TextEditingController email = TextEditingController();
-  TextEditingController password = TextEditingController();
+  //
+  // TextEditingController email = TextEditingController();
+  // TextEditingController password = TextEditingController();
 
 
   ///..................animation.................  ///
 
-
+  late TextEditingController controller_username = TextEditingController(text: '');
+  late TextEditingController controller_password =
+  TextEditingController(text: '');
 
   @override
   Widget build(BuildContext context) {
@@ -56,100 +61,116 @@ class _Login_PageState extends State<Login_Page> {
             Padding(
               padding:  EdgeInsets.symmetric(vertical: 30),
               child: Form(
-                child: Column(
-                  children: [
-                    Padding(
-                      padding:  EdgeInsets.symmetric(horizontal: 15),
-                      child: TextFormField(
-                        controller: email,
-                        keyboardType: TextInputType.emailAddress,
+                child: Padding(
+                  padding: const EdgeInsets.all(14),
+                  child: Column(
+                    children: [
+                      TextField(
+                        controller: controller_username,
+
                         decoration: InputDecoration(
-                          labelText: 'Email',
-                          hintText: 'Enter email',
-                          prefixIcon: Icon(Icons.email),
-                          border: UnderlineInputBorder(),
+                          prefixIcon:Icon(Icons.mail),
+                          filled: true, //<-- SEE HERE
+
+                          fillColor: Colors.grey, //<
+                          border: OutlineInputBorder(),
+                          hintText: 'Enter user Email',
                         ),
-                        onChanged: (String value) {},
-                        validator: (value) {
-                          return value!.isEmpty ? 'Please enter email' : null;
-                        },
                       ),
-                    ),
-                    SizedBox(
-                      height: 30,
-                    ), // space between two wegit
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 15),
-                      child: TextFormField(
-                        obscureText: true,
-                        controller: password,
-                        keyboardType: TextInputType.visiblePassword,
+                      SizedBox(
+                        height: 21,
+                      ),
+                      TextField(
+                        controller: controller_password,
+
                         decoration: InputDecoration(
-                          labelText: 'Password',
+                          filled: true, //<-- SEE HERE
+
+                          fillColor: Colors.grey, //<
+                          prefixIcon:Icon(Icons.password),
+
+                          border: OutlineInputBorder(),
                           hintText: 'Enter password',
-                          prefixIcon: Icon(Icons.password),
-                          border: UnderlineInputBorder(),
                         ),
-                        onChanged: (String value) {},
-                        validator: (value) {
-                          return value!.isEmpty ? 'Please enter password' : null;
-                        },
                       ),
-                    ),
 
-                    SizedBox(
-                      height: 30,
-                    ), // space between two wegit
+                      InkWell(
+                        onTap: (){
+                          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context){
+                            return ForgetPwScreen();
+                          }));
+                        },
+                        child: Align(
+                            alignment: Alignment.centerRight,
+                            child: Text('Forgot Password?',style: TextStyle(fontWeight: FontWeight.bold),)),
+                      ),
+                      SizedBox(
+                        height: 30,
+                      ), // space between two wegit
 
-                    InkWell(
-                      onTap: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context){
-                          return Main_Page();
-                        }));
-                      },
-                      child: Container(
-                        height: 50,
-                        width: 280,
-                        decoration: BoxDecoration(
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.deepOrange,
-                              offset: Offset(
-                                2.0,
-                                2.0,
+                      InkWell(
+                        onTap: () {
+                          loginx();
+                        },
+                        child: Container(
+                          height: 50,
+                          width: 280,
+                          decoration: BoxDecoration(
+                            // boxShadow: [
+                            //   BoxShadow(
+                            //     color: Colors.deepOrange,
+                            //     offset: Offset(
+                            //       2.0,
+                            //       2.0,
+                            //     ),
+                            //     blurRadius: 10.0,
+                            //     spreadRadius: 2.0,
+                            //   ), //BoxShadow
+                            //   BoxShadow(
+                            //     color: Colors.white,
+                            //     offset: Offset(0.0, 0.0),
+                            //     blurRadius: 0.0,
+                            //     spreadRadius: 0.0,
+                            //   ), //BoxShadow
+                            // ],
+                            color: Colors.orange,
+                            borderRadius: BorderRadius.circular(11),
+                          ),
+                          child:  Center(
+                            child: Text(
+                              'Log In',
+                              style: TextStyle(
+                                fontSize: 24.0,
+                                color: Colors.white,
+                                fontFamily: ('Rubik Medium'),
                               ),
-                              blurRadius: 10.0,
-                              spreadRadius: 2.0,
-                            ), //BoxShadow
-                            BoxShadow(
-                              color: Colors.white,
-                              offset: Offset(0.0, 0.0),
-                              blurRadius: 0.0,
-                              spreadRadius: 0.0,
-                            ), //BoxShadow
-                          ],
-                          color: Colors.deepOrange,
-                          borderRadius: BorderRadius.circular(50),
-                        ),
-                        child:  Center(
-                          child: Text(
-                            'Log In',
-                            style: TextStyle(
-                              fontSize: 24.0,
-                              color: Colors.white,
-                              fontFamily: ('Rubik Medium'),
                             ),
                           ),
                         ),
                       ),
-                    ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          // SizedBox(width: 89,),
 
-                  ],
+                          Text('Dont have an account? '),
+                          InkWell( onTap: (){ Navigator.push(context, MaterialPageRoute(builder: (context){
+                            return SignUpScreen();
+                          }));
+                          },child: Text('Sign up',style: TextStyle(color: Colors.deepOrange),)),
+
+                        ],
+                      ),
+
+
+
+                    ],
+                  ),
                 ),
               ),
             ),
 
-            ExplicitAnimations(),
+            // ExplicitAnimations(),
 
 
           ],
@@ -157,7 +178,34 @@ class _Login_PageState extends State<Login_Page> {
       ),
     );
   }
+
+  loginx() async {
+    var uri =
+    Uri.parse('https://www.xeon.pk/myapi/login.php');
+    var response = await http.post(uri, body: {
+      'username': controller_username.text,
+      'password': controller_password.text,
+    });
+    var _data = jsonDecode(response.body);
+    ResponseModel responseModel = ResponseModel.fromJson(_data);
+
+    if (responseModel.status == 200) {
+
+      Own.flexToast(context, '${responseModel.message}');
+      Navigator.push(context,
+          MaterialPageRoute(builder: (BuildContext context) {
+            return Main_Page();
+          }));
+    } else {
+      Own.flexToast(context, "${responseModel.message}");
+    }
+  }
 }
+
+
+
+///...............................animated rectangle in login page ...............///
+
 
 
 
@@ -217,7 +265,7 @@ class _ExplicitAnimationsState extends State<ExplicitAnimations>
           turns: _rotationAnimation,
           child: const Rectangle(
             color1: pink,
-            color2: pinkDark,
+            color2: Colors.orange,
             width: 50,
             height: 50,
           ),
@@ -296,7 +344,7 @@ class BlurContainer extends StatelessWidget {
           decoration: BoxDecoration(
             color: Colors.white.withOpacity(0.2),
             border: Border.all(
-              color: Colors.white.withOpacity(0.5),
+              color: Colors.orange,
               width: 1.5,
             ),
             borderRadius: BorderRadius.circular(15),
@@ -358,3 +406,5 @@ const Color pinkDark = Color(0xffD64265);
 const Color yellow = Color(0xffE7F18F);
 const Color yellowDark = Color(0xffB8C72B);
 const Color purple = Color(0xff323AE9);
+
+///...............................animated rectangle in login page ...............///

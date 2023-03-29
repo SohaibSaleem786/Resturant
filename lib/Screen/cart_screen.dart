@@ -1,5 +1,6 @@
 import 'package:badges/badges.dart' as bg;
 import 'package:flutter/material.dart';
+import 'package:resturant/Screen/recent_order.dart';
 import 'package:syncfusion_flutter_pdf/pdf.dart';
 import 'package:provider/provider.dart';
 import 'package:resturant/CartProvider.dart';
@@ -40,12 +41,22 @@ class _CartScreenState extends State<CartScreen> {
         title: Text('Check Out'),
         centerTitle: true,
         actions: [
-          MaterialButton(
-            color: Colors.indigoAccent,
-            onPressed: (){
-              PdfGenerator.createPdf();
-            },
-            child: const Text("Open File", style: TextStyle(color: Colors.white),),),
+
+         InkWell(
+          onTap: (){
+            PdfGenerator.createPdf();
+          },
+          child: Image.asset(
+          'assets/images/pdf.png',
+          width: 24,
+          height: 24,
+
+      ),
+        ),
+          SizedBox(
+            width: 11,
+          ),
+
           Center(
             child: bg.Badge(
               badgeContent: Consumer<CartProvider>(
@@ -66,6 +77,11 @@ class _CartScreenState extends State<CartScreen> {
         padding: const EdgeInsets.all(10.0),
         child: Column(
           children: [
+            RecentOrders(),
+            Divider(
+              thickness: 8,
+              color: Colors.orange,
+            ),
             FutureBuilder(
                 future:cart.getData() ,
                 builder: (context , AsyncSnapshot<List<Cart>> snapshot){
@@ -83,8 +99,8 @@ class _CartScreenState extends State<CartScreen> {
                         }));
                       },
                               child: Image(
-                                width: 200,
-                                height: 200,
+                                width: 180,
+                                height: 180,
                                 image: AssetImage('assets/images/empty.png'),
 
                               ),
@@ -142,9 +158,49 @@ class _CartScreenState extends State<CartScreen> {
                                                 ),
 
                                                 SizedBox(height: 5,),
-                                                Text(r"$"+ snapshot.data![index].productPrice.toString() ,
-                                                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                                                Row(
+                                                  children: [
+                                                    Text(r"$"+ snapshot.data![index].productPrice.toString() ,
+                                                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                                                    ),
+                                                    SizedBox(
+                                                      width: 5,
+                                                    ),
+                                                    InkWell(
+                                                      onTap: () {
+                                                        showDialog(
+                                                          context: context,
+                                                          builder: (BuildContext context) {
+                                                            return AlertDialog(
+                                                              backgroundColor: Colors.deepOrange,
+                                                              title: Text('Additional Information'),
+                                                              content: Text('Item tax: 15% \n'
+                                                                  'Item discount: 0.00% '),
+                                                              actions: [
+                                                                // ElevatedButton(
+                                                                //   onPressed: () {
+                                                                //     Navigator.of(context).pop();
+                                                                //   },
+                                                                //   child: Text('OK'),
+                                                                // ),
+                                                              ],
+                                                            );
+                                                          },
+                                                        );
+                                                      },
+                                                      // child: Text('Show Dialog'),
+                                                      child: Image(
+                                                        height: 24,
+                                                        width: 24,
+                                                        image: AssetImage('assets/images/info.png'),
+
+
+
+                                                      ),
+                                                    ),
+                                                  ],
                                                 ),
+
                                                 SizedBox(height: 5,),
                                                 Align(
                                                   alignment: Alignment.centerRight,
@@ -246,18 +302,30 @@ class _CartScreenState extends State<CartScreen> {
                   }
                   return Text('') ;
                 }),
-            Consumer<CartProvider>(builder: (context, value, child){
-              return Visibility(
-                visible: value.getTotalPrice().toStringAsFixed(2) == "0.00" ? false : true,
-                child: Column(
-                  children: [
-                    ReusableWidget(title: 'Sub Total', value: r'$'+value.getTotalPrice().toStringAsFixed(2),),
-                    ReusableWidget(title: 'Discout 5%', value: r'$'+'20',),
-                    ReusableWidget(title: 'Total', value: r'$'+value.getTotalPrice().toStringAsFixed(2),)
-                  ],
-                ),
-              );
-            })
+            Container(
+              height: 120,
+              // color: Colors.deepOrange[300],
+               child:  Padding(
+                 padding: const EdgeInsets.all(8.0),
+                 child: Consumer<CartProvider>(builder: (context, value, child){
+                   return Visibility(
+                     visible: value.getTotalPrice().toStringAsFixed(2) == "0.00" ? false : true,
+                     child: Column(
+
+                       children: [
+
+                         ReusableWidget(title: 'Sub Total', value: r'$'+value.getTotalPrice().toStringAsFixed(2),),
+                         ReusableWidget(title: 'Discout 5%', value: r'$'+'20',),
+                         Divider(thickness: 3,color: Colors.deepOrange,),
+                         ReusableWidget(title: 'Total', value: r'$'+value.getTotalPrice().toStringAsFixed(2),),
+                         Text('Minimum order limit is 350 USD'),
+
+                       ],
+                     ),
+                   );
+                 }),
+               ),
+            )
           ],
         ),
       ) ,

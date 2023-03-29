@@ -50,6 +50,11 @@ dependencies:
   syncfusion_flutter_pdf: ^21.1.35
   native_pdf_renderer: ^5.0.0+1
   pdf: ^3.9.0
+  carousel_slider: ^4.2.1
+  fluttertoast: ^8.2.1
+  flutter_pin_code_fields: ^1.1.0
+
+
 
 
 

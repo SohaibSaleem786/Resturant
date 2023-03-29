@@ -11,18 +11,26 @@ class hero extends StatefulWidget {
 
 class _heroState extends State<hero> {
 
-  List<String> productName = ['Biryani' , 'Steak' , 'Pasta' , 'Ramen' , 'Pancakes' , 'Burger', 'Pizza' , 'Salmon Salad' ] ;
+  List<String> productName = [    'Steak',
+    'Pasta',
+    'Ramen',
+    'Pancakes',
+    'Burger',
+    'Pizza',
+    'Salmon Salad',
+    'Biryani',
+  ] ;
   // List<String> productUnit = ['KG' , 'Dozen' , 'KG' , 'Dozen' , 'KG' , 'KG',] ;
   List<int> productPrice = [10, 20 , 30 , 40 , 30 , 40 , 50, 60  ] ;
   List<String> productImage = [
+    'assets/images/steak.jpg',
+    'assets/images/pasta.jpg',
+    'assets/images/ramen.jpg',
+    'assets/images/pancakes.jpg',
+    'assets/images/burger.jpg',
+    'assets/images/pizza.jpg',
+    'assets/images/salmon.jpg',
     'assets/images/biryani.jpg',
-    'assets/images/steak.jpg' ,
-    'assets/images/pasta.jpg' ,
-    'assets/images/ramen.jpg' ,
-    'assets/images/pancakes.jpg' ,
-    'assets/images/burger.jpg' ,
-    'assets/images/pizza.jpg' ,
-    'assets/images/salmon.jpg' ,
 
   ] ;
 
